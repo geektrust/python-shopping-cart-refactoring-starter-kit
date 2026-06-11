@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "gt_main_wrapper.py",
+      "args": [
+        "\"PLACE_ORDER 101 Apple 5\" \"TOTAL_COST 101\""
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}
