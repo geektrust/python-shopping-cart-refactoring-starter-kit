@@ -1,5 +1,17 @@
 class ShoppingCart:
 
+    DISCOUNTS = {
+        "Regular": 0,
+        "Member": 10,
+        "VIP": 20
+    }
+
+    SHIPPING_COSTS = {
+        "Electronics": 10,
+        "Books": 0,
+        "Clothing": 5
+    }
+
     @staticmethod
     def main(args):
         """
@@ -14,15 +26,11 @@ class ShoppingCart:
 
         customer = parts[0]
 
-        if customer == "Regular":
-            discount = 0
-        elif customer == "Member":
-            discount = 10
-        elif customer == "VIP":
-            discount = 20
-        else:
+        if customer not in ShoppingCart.DISCOUNTS:
             print("INVALID CUSTOMER TYPE")
             return
+
+        discount = ShoppingCart.DISCOUNTS[customer]
 
         subtotal = 0
         shipping = 0
@@ -34,17 +42,12 @@ class ShoppingCart:
             price = int(item[1])
             quantity = int(item[2])
 
-            subtotal += price * quantity
-
-            if category == "Electronics":
-                shipping += 10 * quantity
-            elif category == "Books":
-                shipping += 0
-            elif category == "Clothing":
-                shipping += 5 * quantity
-            else:
+            if category not in ShoppingCart.SHIPPING_COSTS:
                 print("INVALID CATEGORY")
                 return
+
+            subtotal += price * quantity
+            shipping += ShoppingCart.SHIPPING_COSTS[category] * quantity
 
         total = subtotal - (subtotal * discount / 100)
 
